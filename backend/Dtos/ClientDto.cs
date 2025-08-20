@@ -8,5 +8,6 @@ public class ClientDto
     public bool IsOnline { get; set; }
     public DateTime? LastSeenAt { get; set; }
     public string? Notes { get; set; }
+    public List<ClientOutboundDto> Outbounds { get; set; } = new();
 }
 

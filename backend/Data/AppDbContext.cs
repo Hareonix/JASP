@@ -15,6 +15,7 @@ public class AppDbContext : DbContext
     public DbSet<Client> Clients => Set<Client>();
     public DbSet<Inbound> Inbounds => Set<Inbound>();
     public DbSet<Outbound> Outbounds => Set<Outbound>();
+    public DbSet<ClientOutbound> ClientOutbounds => Set<ClientOutbound>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -25,6 +26,19 @@ public class AppDbContext : DbContext
         modelBuilder.Entity<Client>()
             .Property(c => c.Tags)
             .HasConversion(tagsConverter);
+
+        modelBuilder.Entity<ClientOutbound>()
+            .HasKey(co => new { co.ClientId, co.OutboundId });
+
+        modelBuilder.Entity<ClientOutbound>()
+            .HasOne(co => co.Client)
+            .WithMany(c => c.Outbounds)
+            .HasForeignKey(co => co.ClientId);
+
+        modelBuilder.Entity<ClientOutbound>()
+            .HasOne(co => co.Outbound)
+            .WithMany(o => o.Clients)
+            .HasForeignKey(co => co.OutboundId);
 
         base.OnModelCreating(modelBuilder);
     }
