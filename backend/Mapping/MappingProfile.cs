@@ -11,6 +11,7 @@ public class MappingProfile : Profile
         CreateMap<Client, ClientDto>().ReverseMap();
         CreateMap<Inbound, InboundDto>().ReverseMap();
         CreateMap<Outbound, OutboundDto>().ReverseMap();
+        CreateMap<ClientOutbound, ClientOutboundDto>().ReverseMap();
     }
 }
 

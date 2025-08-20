@@ -1,21 +1,21 @@
 module.exports = {
   root: true,
-  env: {
-    browser: true,
-    node: true,
-    es2021: true,
-  },
+  env: { browser: true, es2021: true, node: true },
   extends: [
     'eslint:recommended',
     'plugin:vue/vue3-recommended',
     'plugin:@typescript-eslint/recommended',
-    'prettier',
+    'prettier'
   ],
   parser: 'vue-eslint-parser',
   parserOptions: {
     parser: '@typescript-eslint/parser',
-    sourceType: 'module',
     ecmaVersion: 2021,
+    sourceType: 'module'
   },
-  rules: {},
-};
+  plugins: ['vue', '@typescript-eslint'],
+  rules: {
+    'vue/multi-word-component-names': 'off',
+    'vue/valid-v-slot': 'off'
+  }
+}

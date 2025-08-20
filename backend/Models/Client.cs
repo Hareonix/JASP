@@ -16,5 +16,7 @@ public class Client
     public DateTime? LastSeenAt { get; set; }
 
     public string? Notes { get; set; }
+
+    public List<ClientOutbound> Outbounds { get; set; } = new();
 }
 
